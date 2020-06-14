@@ -1,0 +1,37 @@
+package com;
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
+public class Frame extends JFrame{
+
+	public  Frame() {
+		setTitle("全民飞机大战");
+		//设置大小 setsize（宽，高）
+		setSize(512,768);
+		//设置窗体的位置
+		//给空值相对于屏幕左上角居中
+		//setLocationRelativeTo(null);
+		Dimension dim=getToolkit().getScreenSize() ;//获取屏幕大小
+	                int w=(int)dim.width/2;
+		 int h=(int)dim.height/2;
+		 this.setLocation(w-512/2, h-768/2);
+		//设置玩家不允许改变界面大小
+		setResizable(false);
+		//设置默认的关闭选项,退出程序
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public static void main(String[] args) {
+		//创建窗体对象：调用窗体的构造方法，制造窗体
+		Frame frame=new Frame();
+		//创建面板对象：调用面板的构造方法，制作面板
+		Panel panel=new Panel(frame);//方便再面板中添加键盘监听器
+		//调用开始游戏的方法，启动游戏
+		panel.action();
+		//将面板加入到窗体中
+		frame.add(panel); 
+		//显示窗体
+		frame.setVisible(true);
+	}
+}
