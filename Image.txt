@@ -1,0 +1,21 @@
+package com;
+
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class Image {
+	public static BufferedImage getImg(String path) {
+		try {
+			BufferedImage img=ImageIO.read(Image.class.getResource(path));
+			//如果找到，返回图片
+			return img;
+		} catch (IOException e) {
+			// catch 如果找不到图片，就会捕获找不到图片的原因
+			e.printStackTrace();
+		}
+		return null;
+	}
+}
