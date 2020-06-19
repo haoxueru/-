@@ -1,0 +1,17 @@
+package com;
+
+import java.awt.image.BufferedImage;
+
+public class Flyer {
+	//飞行物的图片
+		BufferedImage img;
+		//飞行物的横坐标
+		int x;
+		//飞行物的纵坐标
+		int y;
+		//飞行物的宽度
+		int w;
+		//飞行物的高度
+		int h;
+		
+}
