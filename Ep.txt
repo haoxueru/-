@@ -1,0 +1,73 @@
+package com;
+
+
+import java.util.Random;
+
+public class Ep extends Flyer {
+	protected int bv;//血量
+	int type;//敌机的类型
+	int sp;//敌机的速度
+	
+	public Ep() {
+		//定义随机数的类
+		Random rd=new Random();
+		//生成一个随机数，用来选取图片[0,15]
+		int index=rd.nextInt(17)+1;
+		//设置敌机的类型
+		type=index;
+		img=Image.getImg("/img/dj"+index+".png");
+		//确定敌机的位置
+		//nextint(num)表示会在[0,num)之间随机生成一个整数
+		if(index<=15) {
+			w=img.getWidth();//确定敌机的大小
+			h=img.getHeight();
+		}else if(index==16) {//爱心
+			w=img.getWidth()/10;
+			h=img.getHeight()/10;
+		}else {
+			w=img.getWidth()/4;//子弹
+			h=img.getHeight()/4;
+		}
+
+		x=rd.nextInt(512-w);//确定敌机的坐标
+		y=-h;//-H是让他在屏幕外出现敌机(最顶端)
+		//设置速度
+		sp=19-index;
+		if (index<10) {
+			bv=2;//敌机的血量
+		}else if(index<13){
+			bv=6;
+		}else {
+			bv=16;
+		}
+	}
+	
+	public void move() {
+		if(type==5) {
+			x-=2;
+			y+=3;
+		}else if(type==6) {
+			x+=2;
+			y+=3;
+		}else if(type==15) {
+			//如果是导弹
+			y+=3;
+		}else if(type<=10&&type>=1) {
+			y+=2;
+		}
+		y+=sp;
+	}
+	public boolean shootBy(Fire f) {
+	
+		//判断敌机是否被子弹击中
+		
+		boolean hit=x<=f.x+f.w && x>f.x-w &&
+				y<=f.y+f.h && y>=f.y-h;
+				return hit;
+	}
+	public boolean hitBy(Hero f) {
+		boolean hit=x<=f.x+f.w && x>f.x-w &&
+				y<=f.y+f.h && y>=f.y-h;
+				return hit;
+	}
+}
