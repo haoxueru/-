@@ -1,0 +1,46 @@
+package com;
+
+//import java.awt.image.BufferedImage;
+
+public class Hero extends Flyer {
+	int bv;//英雄机的血量
+	
+	public Hero() {
+		//确定游戏开始时，英雄机显示的图片
+		img=Image.getImg("/img/zj.png");
+		//使用横纵坐标，确定英雄机在游戏开始时显示的位置
+		x=200;
+		y=500;
+		//确定英雄机的大小
+		//使用图片的大小，作为飞机的大小
+		w=img.getWidth();
+		h=img.getHeight();
+		//确定游戏开始时，英雄机的血量
+		bv=3;
+	}
+	
+	
+	// 让英雄机移动到鼠标位置上的方法
+	
+	public void moveToMouse(int mx,int my ) {
+		x=mx-w/2;
+		y=my-h/2;
+	}
+	public void moveUp() {
+                        // 向上移动的方法
+                            y=y-30;
+	} 
+	public void moveDown() {
+		// 向下移动的方法
+		y=y+30;
+	}
+	public void moveLeft() {
+		// 向左移动的方法
+		x-=30;
+	}
+	public void moveRight() {
+		// 向右移动的方法
+		x+=30;
+	}
+	
+}
